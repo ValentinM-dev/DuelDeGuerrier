@@ -1,0 +1,15 @@
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.AssemblyInfoInputs.cache
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.AssemblyInfo.cs
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.csproj.CoreCompileInputs.cache
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.sourcelink.json
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\bin\Debug\net8.0\DuelDeGuerrier.exe
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\bin\Debug\net8.0\DuelDeGuerrier.deps.json
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\bin\Debug\net8.0\DuelDeGuerrier.runtimeconfig.json
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\bin\Debug\net8.0\DuelDeGuerrier.dll
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\bin\Debug\net8.0\DuelDeGuerrier.pdb
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.dll
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\refint\DuelDeGuerrier.dll
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.pdb
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\DuelDeGuerrier.genruntimeconfig.cache
+C:\Users\Utilisateur\Desktop\Programmation\DuelDeGuerrier\DuelDeGuerrier\obj\Debug\net8.0\ref\DuelDeGuerrier.dll
