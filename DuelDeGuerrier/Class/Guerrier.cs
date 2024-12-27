@@ -76,7 +76,7 @@ namespace DuelDeGuerrier.Class
         public virtual int Attaquer()
         {
             Random attaque = new Random();
-            int valeurAttaque = 0;
+            int valeurAttaque;
             int degatsTotal = 0;
 
             for (int i = 0; i < _nbDesAttaque; i++)
@@ -95,7 +95,7 @@ namespace DuelDeGuerrier.Class
 
         public virtual void SubirDegats(int degats)
         {
-            if(_pointsVitaux <= 0)
+            if(_pointsVitaux < 0)
             {
                 degats = 0;
                 Console.ForegroundColor = ConsoleColor.Red;
