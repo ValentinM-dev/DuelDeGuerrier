@@ -15,9 +15,12 @@ namespace DuelDeGuerrier.Class
 
         public DPS(string nom, int pointsVitaux, int nbDesAttaque) : base(nom, pointsVitaux, nbDesAttaque)
         {
+            _nom = nom;
+            _pointsVitaux = pointsVitaux;
+            _nbDesAttaque = nbDesAttaque;
         }
 
-        //Modification de la méthode "Attaquer" permettant à la classe Elfe d'attaquer tout le temps
+        //Modification de la méthode "Attaquer" permettant à la classe DPS d'attaquer plus fort
         public override int Attaquer()
         {
             Random attaque = new Random();

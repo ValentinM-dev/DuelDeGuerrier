@@ -78,7 +78,7 @@ while (!quitter)
     }
 }
 
-static void AjouterGuerrier()
+void AjouterGuerrier()
 {
 
     //Demande du nombre de Guerrier souhaité avant de faire le tournois.
@@ -102,21 +102,21 @@ static void AjouterGuerrier()
             //Insertion des valeurs pour un Tank
             case ConsoleKey.NumPad1:
                 Console.Clear();
-                Console.WriteLine("Entrez les informations pour votre Tank (nom, points de vie, Lancer de dès)");
-                Guerrier personnages = new Tank(Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine()));
+                Console.WriteLine("Entrez les informations pour votre Tank (nom, points de vie (Max 250), Lancer de dès)");
+                personnages.Add(new Tank(Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine())));
                 break;
 
             //Insertion des valeurs pour un DPS
             case ConsoleKey.NumPad2:
                 Console.Clear();
-                Console.WriteLine("Entrez les informations pour votre DPS (nom, points de vie, Lancer de dès)");
-                personnages = new DPS(Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine()));
+                Console.WriteLine("Entrez les informations pour votre DPS (nom, points de vie (Max 150), Lancer de dès)");
+                personnages.Add(new DPS(Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine())));
                 break;
 
             //Insertion des valeurs pour un Support
             case ConsoleKey.NumPad3:
                 Console.Clear();
-                Console.WriteLine("Entrez les informations pour votre Support (nom, points de vie, Lancer de dès)");
+                Console.WriteLine("Entrez les informations pour votre Support (nom, points de vie (Max 125), Lancer de dès)");
                 //personnages = new Support(Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine()));
                 break;
 
@@ -140,15 +140,15 @@ static void AjouterGuerrier()
 static void AfficherListeGuerrier(List<Guerrier> personnages)
 {
     Console.Clear();
-    Console.WriteLine("=== Liste de Guerriers ===");
-    if(personnages.Count == 0)
+    Console.WriteLine("=== Liste de Guerriers ===\n");
+    for (int i = 0; i < personnages.Count; i++)
     {
-        Console.WriteLine("Il n'a aucun Guerrier pret a ce battre pour le tournoi.");
-    }
+        if (personnages.Count == 0)
+        {
+            Console.WriteLine("Il n'a aucun Guerrier pret a ce battre pour le tournoi.");
+        }
 
-    else
-    {
-        for(int i = 0; i < personnages.Count; i++)
+        else
         {
             Console.WriteLine($"Guerrier {i + 1} :");
             personnages[i].AfficherInfos();
@@ -160,7 +160,63 @@ static void AfficherListeGuerrier(List<Guerrier> personnages)
     Console.ReadKey();
 }
 
-static void LancerTournoi()
+void LancerTournoi()
 {
+    Console.Clear();
+    Random combattant = new Random();
+    int nombreCombattant;
+    bool combatActif = false;
+
+    while (!combatActif)
+    {
+        List<Guerrier> combat = new List<Guerrier>();
+        Console.WriteLine("Voulez-vous lancer le tournois ?\n");
+        Console.WriteLine("===\n");
+        Console.WriteLine("Numpad1 = Oui / Numpad2 = Non");
+        Console.ReadKey(true);
+
+        bool lancerTournois;
+
+        if (Console.ReadKey(true).Key == ConsoleKey.NumPad1)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                if (combat.Count > 2 || personnages.Count > 2)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Il faut au minimum 2 Combattant afin de pouvoir lancer le tournois");
+
+                }
+
+                else
+                {
+                    Console.Clear();
+                    int tirage = combattant.Next(0, personnages.Count);
+                    combat.Add(personnages[tirage]);
+                    personnages.RemoveAt(tirage);
+
+                    Console.WriteLine($"Le combattant selectionné est {i + 1}\n");
+                    combat[i].AfficherInfos();
+                    Console.WriteLine("===");
+
+                }
+
+            }
+        }
+
+        else if (Console.ReadKey(true).Key == ConsoleKey.NumPad2)
+        {
+            Console.Clear();
+            Console.WriteLine("Appuyez sur n'importe quel touche pour revenir au menu");
+
+        }
+
+        else if (Console.ReadKey(true).Key != ConsoleKey.NumPad1 && Console.ReadKey(true).Key != ConsoleKey.NumPad2)
+        {
+            Console.Clear();
+            Console.WriteLine("Veuillez selectionner les touches indiquer uniquement");
+
+        }
+    }
 
 }

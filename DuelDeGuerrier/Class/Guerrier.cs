@@ -8,9 +8,9 @@ namespace DuelDeGuerrier.Class
 {
     internal class Guerrier
     {
-        private static int PointsDeVieInitial { get; set; } = 50;
-        private static int PointsDeVieMax { get; set; } = 100;
-        private static int PointsDeVieMin { get; set; } = 1;
+        private int PointsDeVieInitial { get; set; } = 50;
+        private int PointsDeVieMax { get; set; } = 100;
+        private int PointsDeVieMin { get; set; } = 1;
 
         // Attributs
         private string _nom;
@@ -39,9 +39,9 @@ namespace DuelDeGuerrier.Class
         }
 
         //Méthode "SetPointsDeVie" afin de pouvoir affiler des points de vie au futur Guerrier avec un if-else pour verifier si le guerrier respecte bien les limites de PV et qu'il n'es pas de PV négatif
-        public void SetPointsDeVie(int pointsDeVie)
+        public void SetPointsDeVie(int pointsVitaux)
         {
-            this._pointsVitaux = pointsDeVie;
+            this._pointsVitaux = pointsVitaux;
 
             if (_pointsVitaux < PointsDeVieMin || _pointsVitaux > PointsDeVieMax)
             {
@@ -54,7 +54,7 @@ namespace DuelDeGuerrier.Class
                 else if (_pointsVitaux > PointsDeVieMax)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{_nom} ne respecte pas la limite de Points De Vie (entre 1 et 100 PV)");
+                    Console.WriteLine($"{_nom} ne respecte pas la limite de Points De Vie ({PointsDeVieMax} étant ces PV Max");
                 }
 
             }
