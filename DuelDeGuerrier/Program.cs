@@ -1,4 +1,5 @@
-﻿using DuelDeGuerrier.Class;
+﻿using System.ComponentModel.DataAnnotations;
+using DuelDeGuerrier.Class;
 
 Console.WriteLine("Bienvenue dans le 'Duel de Guerrier'! ");
 
@@ -82,8 +83,13 @@ void AjouterGuerrier()
 {
 
     //Demande du nombre de Guerrier souhaité avant de faire le tournois.
-    Console.WriteLine("Combien de Guerrier souhaitez vous ajouter ?");
+    Console.WriteLine("Combien de Guerrier souhaitez vous ajouter ? (Limiter à 10 guerriers)");
     int nombreDePersonnages = int.Parse(Console.ReadLine());
+    if(nombreDePersonnages > 10)
+    {
+        Console.WriteLine("Tu souhaite ajouter trop de guerrier. La limite est à 10 guerriers");
+        return;
+    }
     bool choixClasse = false;
 
     for (int i = 0; i < nombreDePersonnages; i++)
@@ -116,8 +122,7 @@ void AjouterGuerrier()
             //Insertion des valeurs pour un Support
             case ConsoleKey.NumPad3:
                 Console.Clear();
-                Console.WriteLine("Entrez les informations pour votre Support (nom, points de vie (Max 125), Lancer de dès)");
-                //personnages = new Support(Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine()));
+                Console.WriteLine("Classe pas encore disponible en cours de développement");
                 break;
 
             default:
@@ -163,46 +168,77 @@ static void AfficherListeGuerrier(List<Guerrier> personnages)
 void LancerTournoi()
 {
     Console.Clear();
-    Random combattant = new Random();
-    int nombreCombattant;
     bool combatActif = false;
 
     while (!combatActif)
     {
-        List<Guerrier> combat = new List<Guerrier>();
         Console.WriteLine("Voulez-vous lancer le tournois ?\n");
         Console.WriteLine("===\n");
         Console.WriteLine("Numpad1 = Oui / Numpad2 = Non");
         Console.ReadKey(true);
 
-        bool lancerTournois;
-
         if (Console.ReadKey(true).Key == ConsoleKey.NumPad1)
         {
-            for (int i = 0; i < 2; i++)
+            Console.Write("=== Tournois - Selection des Combattants ===\n");
+            Console.Write("Voici la liste des Guerriers :\n");
+            for (int i = 0; i < personnages.Count; i++)
             {
-                if (combat.Count > 2 || personnages.Count > 2)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Il faut au minimum 2 Combattant afin de pouvoir lancer le tournois");
+                Console.WriteLine($"{i + 1}. {personnages[i].GetNom()}");
+                Console.WriteLine("===");
+            }
 
+
+            //Choix des 2 Guerriers 
+            Console.Write("\nSelectionner votre premier Guerrier (1, 2, 3, ...)\t");
+            int premierGuerrier = int.Parse(Console.ReadLine()) - 1;
+
+            Console.Write("Selectionner votre second Guerrier (1, 2, 3, ...)\t");
+            int secondGuerrier = int.Parse(Console.ReadLine()) - 1;
+
+            if (premierGuerrier == secondGuerrier || premierGuerrier < 0 || secondGuerrier < 0 || premierGuerrier >= personnages.Count || secondGuerrier >= personnages.Count)
+            {
+                Console.WriteLine("Selection Impossible");
+                return;
+            }
+
+            //Initialisation du premier et second Combattant avec la classe Guerrier
+            Guerrier combattant1 = personnages[premierGuerrier];
+            Guerrier combattant2 = personnages[secondGuerrier];
+
+            Console.Clear();
+
+            Console.WriteLine($"Le combat opposera {combattant1.GetNom()} à {combattant2.GetNom()}");
+
+            while (combattant1.GetPointDeVie() > 0 && combattant2.GetPointDeVie() > 0)
+            {
+                Console.WriteLine("\n=== Tour de Combbat ===");
+
+                //Degats du premier combattant au second
+                int degats1 = combattant1.Attaquer();
+                combattant2.SubirDegats(degats1);
+
+                if(combattant2.GetPointDeVie() <= 0)
+                {
+                    Console.WriteLine($"{combattant2.GetNom()} ne peut plus ce battre ! {combattant1.GetNom()} gagne ce combat !");
+                    combatActif = false;
+                    return;
                 }
 
-                else
+                //Degats du second combattant au premier
+                int degats2 = combattant2.Attaquer();
+                combattant1.SubirDegats(degats2);
+
+                if (combattant1.GetPointDeVie() <= 0)
                 {
-                    Console.Clear();
-                    int tirage = combattant.Next(0, personnages.Count);
-                    combat.Add(personnages[tirage]);
-                    personnages.RemoveAt(tirage);
-
-                    Console.WriteLine($"Le combattant selectionné est {i + 1}\n");
-                    combat[i].AfficherInfos();
-                    Console.WriteLine("===");
-
+                    Console.WriteLine($"{combattant1.GetNom()} ne peut plus ce battre ! {combattant2.GetNom()} gagne ce combat !");
+                    combatActif = false;
+                    return;
                 }
-
             }
         }
+
+        
+
 
         else if (Console.ReadKey(true).Key == ConsoleKey.NumPad2)
         {
@@ -217,6 +253,7 @@ void LancerTournoi()
             Console.WriteLine("Veuillez selectionner les touches indiquer uniquement");
 
         }
+
     }
 
 }
